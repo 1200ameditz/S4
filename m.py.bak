@@ -7,10 +7,10 @@ import datetime
 import os
 
 # insert your Telegram bot token here
-bot = telebot.TeleBot('7454964661:AAHdwBhy6QCpH5vT2wpfotZirDqXB-mw4eA')
+bot = telebot.TeleBot('7230829849:AAFoRZgx_Nyx70PhVGiqgh2UVBniwtIKKHk')
 
 # Admin user IDs
-admin_id = ["", "", "", "5857557446"]
+admin_id = ["", "", "", "5949303408"]
 
 # File to store allowed user IDs
 USER_FILE = "users.txt"
@@ -213,7 +213,7 @@ def start_attack_reply(message, target, port, time):
 # Dictionary to store the last time each user ran the /bgmi command
 bgmi_cooldown = {}
 
-COOLDOWN_TIME =0
+COOLDOWN_TIME =280
 
 # Handler for /bgmi command
 @bot.message_handler(commands=['bgmi'])
@@ -223,8 +223,8 @@ def handle_bgmi(message):
         # Check if the user is in admin_id (admins have no cooldown)
         if user_id not in admin_id:
             # Check if the user has run the command before and is still within the cooldown period
-            if user_id in bgmi_cooldown and (datetime.datetime.now() - bgmi_cooldown[user_id]).seconds < 180:
-                response = "👍𝘼𝙏𝙏𝘼𝘾𝙆 𝘿𝙊𝙉𝙀👍 𝙈𝘼𝙎𝙎𝘼𝙂𝙀 𝘼𝘼𝙉𝙀 𝙆𝙀 𝘽𝘼𝘼𝘿 𝙏𝙍𝙔 𝙆𝙍𝙊"
+            if user_id in bgmi_cooldown and (datetime.datetime.now() - bgmi_cooldown[user_id]).seconds < 280:
+                response = "👍𝘼𝙏𝙏𝘼𝘾𝙆 𝘿𝙊𝙉𝙀👍 {cooldown_remaining}  Khatam Hone Ke Baad Try Karo"
                 bot.reply_to(message, response)
                 return
             # Update the last time the user ran the command
@@ -235,8 +235,8 @@ def handle_bgmi(message):
             target = command[1]
             port = int(command[2])  # Convert time to integer
             time = int(command[3])  # Convert port to integer
-            if time > 181:
-                response = "🤬𝘽𝙆𝙇. 𝙏𝙄𝙈𝙀 𝙆𝘼𝙈 𝘿𝘼𝙇 𝙉𝘼 - 180"
+            if time > 281:
+                response = "🤬𝘽𝙆𝙇. 𝙏𝙄𝙈𝙀 𝙆𝘼𝙈 𝘿𝘼𝙇 𝙉𝘼 - 280"
             else:
                 record_command_logs(user_id, '/bgmi', target, port, time)
                 log_command(user_id, target, port, time)
